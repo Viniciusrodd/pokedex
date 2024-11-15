@@ -16,17 +16,20 @@
 <script>
 import axios from 'axios';
 import Pokemon from './components/Pokemon';
-export default {
 
+export default {
   components: {
     Pokemon
   },
+
   name: 'App',
+
   data() {
     return {
       pokemonVar: []
     }
   },
+
   created(){
     axios.get('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
       .then(response =>{      
@@ -35,9 +38,10 @@ export default {
       })
       .catch(error => console.log(error))
   }
-
 }
 </script>
+
+
 
 <style>
 #app {
@@ -45,7 +49,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
