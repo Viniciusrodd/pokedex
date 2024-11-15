@@ -3,7 +3,11 @@
     <h1>Meu projeto vue</h1>
     <ul>
       <li v-for="(pokemon, index) in pokemonVar" :key="pokemon.id">
-        {{ index + 1 }} - {{ pokemon.name }}
+        <!--transformando primeira letra do pokemon em maiucula: -->
+        <Pokemon 
+          :nome="pokemon.name"
+          :url="pokemon.url" :num="index + 1" 
+        />
       </li>
     </ul>
   </div>
@@ -11,7 +15,12 @@
 
 <script>
 import axios from 'axios';
+import Pokemon from './components/Pokemon';
 export default {
+
+  components: {
+    Pokemon
+  },
   name: 'App',
   data() {
     return {
@@ -26,6 +35,7 @@ export default {
       })
       .catch(error => console.log(error))
   }
+
 }
 </script>
 
