@@ -6,7 +6,7 @@
         <div class="card-image">
             <figure>
             <img
-                :src="pokemon.frontPoke"
+                :src="currentImg"
                 alt="Placeholder image"
             />
             </figure>
@@ -17,6 +17,9 @@
           <div class="media-content">
             <p class="title is-4">{{ num }}. {{ upper(nome) }}</p>
             <p class="subtitle is-6">{{ pokemon.typePoke }}</p>
+            <button ref="bttChange" class="button is-info is-dark" @click="changeSprit">
+                Change to back view
+            </button>
           </div>
         </div>
 
@@ -42,12 +45,16 @@ export default {
           //Pegando imagem de pokemon, frente/costas:
           this.pokemon.frontPoke = res.data.sprites.front_default;          
           this.pokemon.backPoke = res.data.sprites.back_default;
+          this.currentImg = this.pokemon.frontPoke
           console.log(this.pokemon)
         })
     },
 
     data(){
       return { 
+        isFront: true,
+        currentImg: '',
+
         pokemon: {
           typePoke: '',   // Inicializando com uma propriedade vazia
           frontPoke: '',  // Inicializando com uma propriedade vazia
@@ -64,13 +71,29 @@ export default {
 
     methods: {
       //transforma 1 letra de string em maiúscula:
-      upper(value){
-        if(!value){
-          return ''
-        }else{          
-          return value[0].toUpperCase() + value.slice(1)
+        upper(value){
+            if(!value){
+                return ''
+            }else{          
+                return value[0].toUpperCase() + value.slice(1)
+            }
+        },
+
+        changeSprit(){
+            if(this.isFront){
+                this.isFront = false
+                this.currentImg = this.pokemon.backPoke
+                this.$refs.bttChange.classList.add('button', 'is-danger', 'is-dark')
+                this.$refs.bttChange.innerText = 'Return to front view'
+            }else{
+                this.isFront = true
+                this.currentImg = this.pokemon.frontPoke
+                this.$refs.bttChange.classList.remove('button', 'is-danger', 'is-dark')
+                this.$refs.bttChange.classList.add('button', 'is-info', 'is-dark')
+                this.$refs.bttChange.innerText = 'Change to back view'
+            }
+            
         }
-      }
     }
 }
 </script>
