@@ -1,16 +1,16 @@
 <template>
-  <div id="app">
-    <h1>Meu projeto vue</h1>
-    <ul>
-      <li v-for="(pokemon, index) in pokemonVar" :key="pokemon.id">
-        <!--transformando primeira letra do pokemon em maiucula: -->
-        <Pokemon 
-          :nome="pokemon.name"
-          :url="pokemon.url" :num="index + 1" 
-        />
-      </li>
-    </ul>
-  </div>
+    <div id="app">
+        <h1 class="title is-1">Welcome to my Pokedex</h1>
+        <div class="column is-half is-offset-one-quarter">
+        <div v-for="(pokemon, index) in pokemonVar" :key="pokemon.id">
+            <!--transformando primeira letra do pokemon em maiucula: -->
+            <Pokemon
+            :nome="pokemon.name"
+            :url="pokemon.url" :num="index + 1"
+            />
+        </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
   components: {
     Pokemon
   },
-
+  
   name: 'App',
 
   data() {
