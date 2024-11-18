@@ -1,35 +1,34 @@
 <template>
-     <div id="pokemon">
-          <div class="card">
-               <div class="card-image">
-                    <figure>
-                         <img :src="currentImg" alt="Placeholder image" />
-                    </figure>
-               </div>
-               <div class="card-content">
-                    <div class="media">
-                         <div class="media-content">
-                              <p class="title is-4">
-                                   {{ num }}. {{ upper(nome) }}
-                              </p>
-                              <p class="subtitle is-6">
-                                   {{ pokemon.typePoke }}
-                              </p>
-                              <hr />
-                              <button
-                                   ref="bttChange"
-                                   class="button is-info is-dark"
-                                   @click="changeSprit"
-                              >
-                                   Change to back view
-                              </button>
-                         </div>
-                    </div>
+    <div id="pokemon">
+        <div class="card">
+            <div class="card-image">
+                <figure>
+                        <img :src="currentImg" alt="Placeholder image" />
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">
+                                {{ num }}. {{ upper(nome) }}
+                            </p>
+                            <p class="subtitle is-6">
+                                {{ pokemon.typePoke }}
+                            </p>
+                            <hr />
+                            <button
+                                ref="bttChange"
+                                class="button is-info is-dark"
+                                @click="changeSprit">
+                                Change to back view
+                            </button>
+                        </div>
+                </div>
 
-                    <div class="content"></div>
-               </div>
-          </div>
-     </div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -68,42 +67,42 @@ export default {
      },
 
      methods: {
-          //transforma 1 letra de string em maiúscula:
-          upper(value) {
-               if (!value) {
-                    return "";
-               } else {
-                    return value[0].toUpperCase() + value.slice(1);
-               }
-          },
+        //transforma 1 letra de string em maiúscula:
+        upper(value) {
+            if (!value) {
+                return "";
+            } else {
+                return value[0].toUpperCase() + value.slice(1);
+            }
+        },
 
-          changeSprit() {
-               if (this.isFront) {
-                    this.isFront = false;
-                    this.currentImg = this.pokemon.backPoke;
-                    this.$refs.bttChange.classList.add(
-                         "button",
-                         "is-danger",
-                         "is-dark"
-                    );
-                    this.$refs.bttChange.innerText = "Return to front view";
-               } else {
-                    this.isFront = true;
-                    this.currentImg = this.pokemon.frontPoke;
-                    this.$refs.bttChange.classList.remove(
-                         "button",
-                         "is-danger",
-                         "is-dark"
-                    );
-                    this.$refs.bttChange.classList.add(
-                         "button",
-                         "is-info",
-                         "is-dark"
-                    );
-                    this.$refs.bttChange.innerText = "Change to back view";
-               }
-          },
-     },
+        changeSprit() {
+            if (this.isFront) {
+                this.isFront = false;
+                this.currentImg = this.pokemon.backPoke;
+                this.$refs.bttChange.classList.add(
+                        "button",
+                        "is-danger",
+                        "is-dark"
+                );
+                this.$refs.bttChange.innerText = "Return to front view";
+            } else {
+                this.isFront = true;
+                this.currentImg = this.pokemon.frontPoke;
+                this.$refs.bttChange.classList.remove(
+                        "button",
+                        "is-danger",
+                        "is-dark"
+                );
+                this.$refs.bttChange.classList.add(
+                        "button",
+                        "is-info",
+                        "is-dark"
+                );
+                this.$refs.bttChange.innerText = "Change to back view";
+            }
+        },
+    },
 };
 </script>
 
