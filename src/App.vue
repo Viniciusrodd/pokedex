@@ -10,9 +10,15 @@
                 name="search" 
                 class="input is-info">
             
-            <button @click="buscar" id="search-btt" class="button is-primary is-dark">
-                Search
-            </button>
+            <div id="div-btts">
+                <button @click="buscar" id="search-btt" class="button is-primary is-dark">
+                    Search
+                </button>
+                
+                <button @click="reset" ref="bttResetRef" class="button is-danger is-dark" id="btt-reset">
+                    Reset
+                </button>
+            </div>
 
             <div v-for="(pokemon, index) in filteredPokemons" :key="pokemon.name">
                 <Pokemon
@@ -37,6 +43,7 @@ export default {
 
     data() {
         return {
+            bttReset: true,
             filteredPokemons: [],
             pokemonVar: [],
             buscaName: ''
@@ -44,7 +51,13 @@ export default {
     },
 
     methods: {
+        bttDisplay(btt){
+            if(btt){
+                this.$refs.bttResetRef.style.display = 'block'
+            }
+        },
         buscar(){
+            this.bttDisplay(this.bttReset)
             this.filteredPokemons = this.pokemonVar
             if(this.buscaName == ''){
                 this.filteredPokemons = this.pokemonVar
@@ -53,6 +66,9 @@ export default {
                     pokemon.name == this.buscaName
                 )
             }
+        },
+        reset(){
+            window.location.reload()
         }
     },
 
@@ -82,8 +98,18 @@ export default {
 </script>
 
 <style>
-#search-btt{
+#div-btts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#btt-reset{
+    display: none;
     margin-top: 10px;
+}
+#search-btt{
+    margin: 10px 5px 0px 0px;
 }
 #app {
      font-family: Avenir, Helvetica, Arial, sans-serif;
