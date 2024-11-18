@@ -11,12 +11,12 @@
             />
             </figure>
         </div>
-
       <div class="card-content">
         <div class="media">
           <div class="media-content">
             <p class="title is-4">{{ num }}. {{ upper(nome) }}</p>
             <p class="subtitle is-6">{{ pokemon.typePoke }}</p>
+            <hr>
             <button ref="bttChange" class="button is-info is-dark" @click="changeSprit">
                 Change to back view
             </button>
@@ -92,7 +92,6 @@ export default {
                 this.$refs.bttChange.classList.add('button', 'is-info', 'is-dark')
                 this.$refs.bttChange.innerText = 'Change to back view'
             }
-            
         }
     }
 }
@@ -101,6 +100,10 @@ export default {
 
 
 <style>
+    img{
+        height: 30%;
+        width: 30%;
+    }
     #pokemon{
         margin: 40px 0px 40px 0px;
     }
