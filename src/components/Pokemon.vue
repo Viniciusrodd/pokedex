@@ -1,6 +1,7 @@
 <template>
     <div id="pokemon">
         <div class="card">
+            <h1 v-show="msg">mensagem aqui</h1>
             <div class="card-image">
                 <figure>
                         <img :src="currentImg" alt="Placeholder image" />
@@ -35,38 +36,39 @@
 import axios from "axios";
 
 export default {
-     created() {
-          axios.get(this.url).then((res) => {
-               //Criando var type pra receber tipo de pokemon:
-               this.pokemon.typePoke = res.data.types[0].type.name;
-               //Pegando imagem de pokemon, frente/costas:
-               this.pokemon.frontPoke = res.data.sprites.front_default;
-               this.pokemon.backPoke = res.data.sprites.back_default;
-               this.currentImg = this.pokemon.frontPoke;
-               console.log(this.pokemon);
-          });
-     },
+    created() {
+        axios.get(this.url).then((res) => {
+            //Criando var type pra receber tipo de pokemon:
+            this.pokemon.typePoke = res.data.types[0].type.name;
+            //Pegando imagem de pokemon, frente/costas:
+            this.pokemon.frontPoke = res.data.sprites.front_default;
+            this.pokemon.backPoke = res.data.sprites.back_default;
+            this.currentImg = this.pokemon.frontPoke;
+            console.log(this.pokemon);
+        });
+    },
 
-     data() {
-          return {
-               isFront: true,
-               currentImg: "",
+    data() {
+        return {
+            msg: false,
+            isFront: true,
+            currentImg: "",
 
-               pokemon: {
-                    typePoke: "", // Inicializando com uma propriedade vazia
-                    frontPoke: "", // Inicializando com uma propriedade vazia
-                    backPoke: "",
-               },
-          };
-     },
+            pokemon: {
+                typePoke: "", // Inicializando com uma propriedade vazia
+                frontPoke: "", // Inicializando com uma propriedade vazia
+                backPoke: "",
+            },
+        };
+    },
 
-     props: {
-          num: Number,
-          nome: String,
-          url: String,
-     },
+    props: {
+        num: Number,
+        nome: String,
+        url: String,
+    },
 
-     methods: {
+    methods: {
         //transforma 1 letra de string em maiúscula:
         upper(value) {
             if (!value) {
