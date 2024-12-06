@@ -46,7 +46,8 @@ export default {
             bttReset: true,
             filteredPokemons: [],
             pokemonVar: [],
-            buscaName: ''
+            buscaName: '',
+            pokeName: []
         };
     },
 
@@ -59,16 +60,27 @@ export default {
         buscar(){
             this.bttDisplay(this.bttReset)
             this.filteredPokemons = this.pokemonVar
-            if(this.buscaName == ''){
-                this.filteredPokemons = this.pokemonVar
-            }else{
-                this.filteredPokemons = this.pokemonVar.filter(pokemon => 
+
+            this.pokeName = this.filteredPokemons = this.pokemonVar.filter(pokemon => 
                     pokemon.name == this.buscaName
                 )
+
+
+            if(!this.buscaName == this.pokeName || this.buscaName == ''){
+                window.alert(`esse pokemon "${this.buscaName}" não existe !`)
+                this.filteredPokemons = this.pokemonVar
+                this.buscaName = ''
             }
+            else{
+                console.log(this.buscaName + '=' + this.pokeName)
+                this.pokeName
+                this.buscaName = ''
+            }
+                        
         },
         reset(){
-            window.location.reload()
+            this.filteredPokemons = this.pokemonVar
+            this.buscaName = ''
         }
     },
 
