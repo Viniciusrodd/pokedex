@@ -65,9 +65,14 @@ export default {
                     pokemon.name == this.buscaName
                 )
 
+            if(this.buscaName == ''){
+                window.alert(`Put a pokemon name!`)
+                this.filteredPokemons = this.pokemonVar
+                this.buscaName = ''
+            }
 
-            if(!this.buscaName == this.pokeName || this.buscaName == ''){
-                window.alert(`esse pokemon "${this.buscaName}" não existe !`)
+            if(!this.buscaName == this.pokeName){
+                window.alert(`This pokemon "${this.buscaName}" doesn't exist`)
                 this.filteredPokemons = this.pokemonVar
                 this.buscaName = ''
             }
